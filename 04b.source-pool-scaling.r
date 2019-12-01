@@ -14,6 +14,23 @@ hgt <- read.table("raw.data/hgt.txt")[[1]]
 load("clean.data/wood-phylo.rda")
 load("clean.data/herb-phylo.rda")
 
+ta <- ta[sample(nrow(ta)), ]
+sa <- sa[sample(nrow(sa)), ]
+ha <- ha[sample(nrow(ha)), ]
+
+save(ta, file = "clean.data/tree-abund2.rda")
+save(sa, file = "clean.data/shrub-abund2.rda")
+save(ha, file = "clean.data/herb-abund2.rda")
+
+
+ta <- ta[sample(nrow(ta)), ]
+sa <- sa[sample(nrow(sa)), ]
+ha <- ha[sample(nrow(ha)), ]
+
+save(ta, file = "clean.data/tree-abund3.rda")
+save(sa, file = "clean.data/shrub-abund3.rda")
+save(ha, file = "clean.data/herb-abund3.rda")
+
 
 #___________________________________________________________________
 
@@ -105,6 +122,8 @@ for (r in 1:rmax)
 
 
 save(res, file = "clean.data/source-pool-scaling.rda")
+save(res, file = "clean.data/source-pool-scaling2.rda")
+save(res, file = "clean.data/source-pool-scaling3.rda")
 
 #_____________________________________________________________________
 
@@ -135,6 +154,69 @@ plot(1:rmax, tapply(res$h.ses.a, res$r, mean, na.rm = T), pch = 19, col = "fores
 
 dev.off()
 
+#_____________________________________________________________________
+
+load("clean.data/source-pool-scaling2.rda")
+
+png("figures/source-pool-ses2.png", 4000, 1500, pointsize = 75)
+op <- par(mfrow = c(2,3), mar = c(3, 3, 2, 0.5))
+plot(t.ses ~ r, res, col = "tomato", pch = 16)
+plot(s.ses ~ r, res, col = "skyblue", pch = 16)
+plot(h.ses ~ r, res, col = "forestgreen", pch = 16)
+
+plot(1:rmax, tapply(res$t.ses, res$r, mean, na.rm = T), pch = 19, col = "tomato")
+plot(1:rmax, tapply(res$s.ses, res$r, mean, na.rm = T), pch = 19, col = "skyblue")
+plot(1:rmax, tapply(res$h.ses, res$r, mean, na.rm = T), pch = 19, col = "forestgreen")
+
+dev.off()
+
+
+png("figures/source-pool-ses-a2.png", 4000, 1500, pointsize = 75)
+op <- par(mfrow = c(2,3), mar = c(3, 3, 2, 0.5))
+plot(t.ses.a ~ r, res, col = "tomato", pch = 16)
+plot(s.ses.a ~ r, res, col = "skyblue", pch = 16)
+plot(h.ses.a ~ r, res, col = "forestgreen", pch = 16)
+
+plot(1:rmax, tapply(res$t.ses.a, res$r, mean, na.rm = T), pch = 19, col = "tomato")
+plot(1:rmax, tapply(res$s.ses.a, res$r, mean, na.rm = T), pch = 19, col = "skyblue")
+plot(1:rmax, tapply(res$h.ses.a, res$r, mean, na.rm = T), pch = 19, col = "forestgreen")
+
+dev.off()
+
+#_____________________________________________________________________
+
+load("clean.data/source-pool-scaling3.rda")
+
+png("figures/source-pool-ses3.png", 4000, 1500, pointsize = 75)
+op <- par(mfrow = c(2,3), mar = c(3, 3, 2, 0.5))
+plot(t.ses ~ r, res, col = "tomato", pch = 16)
+plot(s.ses ~ r, res, col = "skyblue", pch = 16)
+plot(h.ses ~ r, res, col = "forestgreen", pch = 16)
+
+plot(1:rmax, tapply(res$t.ses, res$r, mean, na.rm = T), pch = 19, col = "tomato")
+plot(1:rmax, tapply(res$s.ses, res$r, mean, na.rm = T), pch = 19, col = "skyblue")
+plot(1:rmax, tapply(res$h.ses, res$r, mean, na.rm = T), pch = 19, col = "forestgreen")
+
+dev.off()
+
+
+png("figures/source-pool-ses-a3.png", 4000, 1500, pointsize = 75)
+op <- par(mfrow = c(2,3), mar = c(3, 3, 2, 0.5))
+plot(t.ses.a ~ r, res, col = "tomato", pch = 16)
+plot(s.ses.a ~ r, res, col = "skyblue", pch = 16)
+plot(h.ses.a ~ r, res, col = "forestgreen", pch = 16)
+
+plot(1:rmax, tapply(res$t.ses.a, res$r, mean, na.rm = T), pch = 19, col = "tomato")
+plot(1:rmax, tapply(res$s.ses.a, res$r, mean, na.rm = T), pch = 19, col = "skyblue")
+plot(1:rmax, tapply(res$h.ses.a, res$r, mean, na.rm = T), pch = 19, col = "forestgreen")
+
+dev.off()
+
+
+
+#load("clean.data/source-pool-scaling.rda")
+#load("clean.data/source-pool-scaling2.rda")
+#load("clean.data/source-pool-scaling3.rda")
 
 library(effects)
 library(nlme)
